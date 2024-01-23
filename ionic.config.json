@@ -1,0 +1,8 @@
+{
+  "name": "Personal",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "48045ddc"
+}
