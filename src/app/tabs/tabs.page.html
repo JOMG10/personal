@@ -33,6 +33,10 @@
 
         <ion-list>
 
+          <ion-item  href="/tabs/tab1" (click)="cambiaEvento()">PRINCIPAL</ion-item>
+          <ion-item href="/tabs/tab2">PENDIENTES</ion-item>
+          <ion-item href="/tabs/tab3">Item 3</ion-item>
+
           <ion-item>PRINCIPAL</ion-item>
           <ion-item>PENDIENTES</ion-item>
           <ion-item>Item 3</ion-item>
@@ -50,6 +54,9 @@
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
+      <ion-content class="ion-padding">
+        <app-tab1 *ngIf ></app-tab1>
+      </ion-content>
       <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
     </div>
   </ion-app>
