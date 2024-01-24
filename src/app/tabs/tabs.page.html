@@ -1,9 +1,12 @@
 <ion-tabs>
 
+  <!--
+
+
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="tab1" href="/tabs/tab1">
       <ion-icon aria-hidden="true" name="triangle"></ion-icon>
-      <ion-label>Tab 1</ion-label>
+      <ion-label>PAGINA 1</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="tab2" href="/tabs/tab2">
@@ -16,5 +19,39 @@
       <ion-label>Tab 3</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
+
+  -->
+
+  <ion-app>
+    <ion-menu contentId="main-content">
+      <ion-header>
+        <ion-toolbar color="tertiary">
+          <ion-title>Menu Content</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <ion-list>
+
+          <ion-item>PRINCIPAL</ion-item>
+          <ion-item>PENDIENTES</ion-item>
+          <ion-item>Item 3</ion-item>
+
+        </ion-list>
+
+      </ion-content>
+    </ion-menu>
+    <div class="ion-page" id="main-content">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
+    </div>
+  </ion-app>
 
 </ion-tabs>
