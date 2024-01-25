@@ -11,8 +11,11 @@ export class TabsPage {
   constructor() {}
 
   Inicio = "INICIO"
+  OPCION2= "opcion2"
+  OPCION3= "opcion3"
 
   opcion = this.Inicio
+
   cambiaEvento() {
 
   }
