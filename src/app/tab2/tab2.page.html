@@ -3,20 +3,25 @@
 
   <ion-button (click)="setOpen(true)">AGREGAR</ion-button>
 
-
-
-    <ion-item *ngFor="let deuda of deudas " (click)="setOpenItem(true)" >
-      <ion-label>
+  <div>
+    <ion-item *ngFor="let deuda of deudas "  >
+      <ion-label (click)="setOpenItem(true)">
         <h3>{{deuda.nombre}}{{deuda.cantidad}}</h3>
-
       </ion-label>
 
+
       <ion-buttons slot="end" >
-        <ion-icon name="cart-outline" routerLink="/carrito" style="height: 20px; width: 20px"></ion-icon>
+        <ion-icon name="trash-outline" (click)="eliminar()" style="height: 20px; width: 20px"></ion-icon>
         <ion-badge color="miColor" class="numero-carrito"></ion-badge>
         <ion-icon name="search-outline" slot="end" id="buscador" routerLink="/buscar"></ion-icon>
       </ion-buttons>
     </ion-item>
+
+  </div>
+
+
+
+
 
   <!-- modal de AGREGAR UN NUEVO PAGO -->
   <ion-content class="ion-padding">

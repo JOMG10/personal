@@ -34,4 +34,8 @@ export class Tab2Page {
     this.setOpen(false)
     this.nuevoDato = {}
   }
+
+  eliminar() {
+    console.log("boton precionado")
+  }
 }
