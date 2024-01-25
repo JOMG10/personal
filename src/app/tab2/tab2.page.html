@@ -1,15 +1,72 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      PRESTAMO
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">PRESTAMO</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true"  >
+
+  <ion-button (click)="setOpen(true)">AGREGAR</ion-button>
+
+
+
+    <ion-item *ngFor="let deuda of deudas " (click)="setOpenItem(true)" >
+      <ion-label>
+        <h3>{{deuda.nombre}}</h3>
+        <h3>{{deuda.cantidad}}</h3>
+      </ion-label>
+    </ion-item>
+
+
+
+
+
+  <!-- modal de AGREGAR UN NUEVO PAGO -->
+  <ion-content class="ion-padding">
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="setOpen(false)">Cancel</ion-button>
+            </ion-buttons>
+            <ion-title>AGREGAR UN NUEVO</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
+            reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
+            dicta.
+          </p>>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
+
+  <!-- MODAL DONDE SE VE QUE TIENEN LOLS ITEMS  -->
+  <ion-content class="ion-padding">
+    <ion-modal [isOpen]="isModalItem">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="setOpenItem(false)">Cancel</ion-button>
+            </ion-buttons>
+            <ion-title>EDITAR ITEM Y VER INFORMACION</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
+            reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
+            dicta.
+          </p>>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
 </ion-content>
+
+
