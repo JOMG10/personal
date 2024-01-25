@@ -7,14 +7,16 @@
 
     <ion-item *ngFor="let deuda of deudas " (click)="setOpenItem(true)" >
       <ion-label>
-        <h3>{{deuda.nombre}}</h3>
-        <h3>{{deuda.cantidad}}</h3>
+        <h3>{{deuda.nombre}}{{deuda.cantidad}}</h3>
+
       </ion-label>
+
+      <ion-buttons slot="end" >
+        <ion-icon name="cart-outline" routerLink="/carrito" style="height: 20px; width: 20px"></ion-icon>
+        <ion-badge color="miColor" class="numero-carrito"></ion-badge>
+        <ion-icon name="search-outline" slot="end" id="buscador" routerLink="/buscar"></ion-icon>
+      </ion-buttons>
     </ion-item>
-
-
-
-
 
   <!-- modal de AGREGAR UN NUEVO PAGO -->
   <ion-content class="ion-padding">
@@ -25,24 +27,44 @@
             <ion-buttons slot="start">
               <ion-button (click)="setOpen(false)">Cancel</ion-button>
             </ion-buttons>
-            <ion-title>AGREGAR UN NUEVO</ion-title>
+            <ion-title>AGREGAR NUEVO PAGO</ion-title>
             <ion-buttons slot="end">
               <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
-            reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
-            dicta.
-          </p>>
+          <ion-list>
+            <ion-list>
+              <ion-item>
+                <ion-input label="Nuevo alias" placeholder="Escribe un alias" ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input label="Nombre de la empresa" placeholder="Ingrese el nombre" [(ngModel)]="this.nuevoDato.nombre"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input label="Cantidad" type="number" placeholder="0.0" [(ngModel)]="this.nuevoDato.cantidad"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input label="Fecha de pago mensual" type="date" [(ngModel)]="this.nuevoDato.fecha"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input label="Fecha de inicio" type="Date" ></ion-input>
+              </ion-item>
+
+            </ion-list>
+          </ion-list>
+
+          <ion-button (click)="agregarPago()">AGREGAR</ion-button>
         </ion-content>
       </ng-template>
     </ion-modal>
   </ion-content>
 
-  <!-- MODAL DONDE SE VE QUE TIENEN LOLS ITEMS  -->
+  <!-- MODAL DONDE SE VE QUE TIENEN LOS ITEMS  -->
   <ion-content class="ion-padding">
     <ion-modal [isOpen]="isModalItem">
       <ng-template>
