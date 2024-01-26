@@ -3,18 +3,16 @@
 
   <ion-button (click)="setOpen(true)">AGREGAR</ion-button>
 
-
-
-    <ion-item *ngFor="let deuda of deudas " (click)="setOpenItem(true)" >
-      <ion-label>
-        <h3>{{deuda.nombre}}{{deuda.cantidad}}</h3>
-
+    <ion-item *ngFor="let deuda of deudas; let i = index "  >
+      <ion-label (click)="setOpenItem(true)">
+        <h2>{{deuda.alias}}</h2>
+        <h2>{{deuda.fechaMensual}}</h2>
       </ion-label>
 
-      <ion-buttons slot="end" >
-        <ion-icon name="cart-outline" routerLink="/carrito" style="height: 20px; width: 20px"></ion-icon>
+      <ion-buttons slot="end" id="present-alert">
+        <ion-icon name="trash-outline" (click)="presentActionSheet(i)" style="height: 20px; width: 20px" ></ion-icon>
         <ion-badge color="miColor" class="numero-carrito"></ion-badge>
-        <ion-icon name="search-outline" slot="end" id="buscador" routerLink="/buscar"></ion-icon>
+        <ion-icon name="search-outline" slot="end" id="buscador" routerLink="/buscar" ></ion-icon>
       </ion-buttons>
     </ion-item>
 
@@ -28,16 +26,13 @@
               <ion-button (click)="setOpen(false)">Cancel</ion-button>
             </ion-buttons>
             <ion-title>AGREGAR NUEVO PAGO</ion-title>
-            <ion-buttons slot="end">
-              <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
-            </ion-buttons>
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
           <ion-list>
             <ion-list>
               <ion-item>
-                <ion-input label="Nuevo alias" placeholder="Escribe un alias" ></ion-input>
+                <ion-input label="Nuevo alias" placeholder="Escribe un alias" [(ngModel)]="this.nuevoDato.alias"></ion-input>
               </ion-item>
               <ion-item>
                 <ion-input label="Nombre de la empresa" placeholder="Ingrese el nombre" [(ngModel)]="this.nuevoDato.nombre"></ion-input>
@@ -48,11 +43,11 @@
               </ion-item>
 
               <ion-item>
-                <ion-input label="Fecha de pago mensual" type="date" [(ngModel)]="this.nuevoDato.fecha"></ion-input>
+                <ion-input label="Fecha de pago mensual" type="number" [(ngModel)]="this.nuevoDato.fecha"></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-input label="Fecha de inicio" type="Date" ></ion-input>
+                <ion-input label="Fecha de inicio" type="Date"></ion-input>
               </ion-item>
 
             </ion-list>
@@ -73,22 +68,41 @@
             <ion-buttons slot="start">
               <ion-button (click)="setOpenItem(false)">Cancel</ion-button>
             </ion-buttons>
-            <ion-title>EDITAR ITEM Y VER INFORMACION</ion-title>
-            <ion-buttons slot="end">
-              <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
-            </ion-buttons>
+            <ion-title>INFORMCION DE </ion-title>
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
-            reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
-            dicta.
-          </p>>
+          <ion-list>
+            <ion-list>
+              <ion-item>
+                <ion-input label="Nuevo alias" placeholder="Escribe un alias" ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input label="Nombre de la empresa" placeholder="Ingrese el nombre"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input label="Cantidad" type="number" placeholder="0.0"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input label="Fecha de pago mensual" type="date" ></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-input label="Fecha de inicio" type="Date" ></ion-input>
+              </ion-item>
+
+            </ion-list>
+          </ion-list>
+
+          <ion-button (click)="agregarPago()">GUARDAR CAMBIOS</ion-button>
         </ion-content>
       </ng-template>
     </ion-modal>
   </ion-content>
 </ion-content>
+
+
 
 
