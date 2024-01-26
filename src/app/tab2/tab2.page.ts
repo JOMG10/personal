@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import {ActionSheetController, ModalController} from '@ionic/angular';
+
+const DEUDAS_KEY = 'deudas';
 
 
 @Component({
@@ -8,7 +10,14 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  constructor(private modalCtrl: ModalController) {}
+
+
+
+  constructor(private modalCtrl: ModalController, private actionSheetCtrl: ActionSheetController) {
+    // Cargar deudas desde localStorage al iniciar la aplicación
+    const storedDeudas = localStorage.getItem(DEUDAS_KEY);
+    this.deudas = storedDeudas ? JSON.parse(storedDeudas) : [];
+  }
   deudas:any[] = []
   nuevoDato: any ={}
   isModalOpen = false;
@@ -27,15 +36,47 @@ export class Tab2Page {
   }
   agregarPago() {
     this.deudas.push( {
+      alias:this.nuevoDato.alias,
       nombre:this.nuevoDato.nombre,
       cantidad:this.nuevoDato.cantidad,
-      fecha:this.nuevoDato.fecha
+      fechaMensual:this.nuevoDato.fechaMensual,
+      fechaInicio: this.nuevoDato.fechaInicio
     })
+
+    localStorage.setItem(DEUDAS_KEY, JSON.stringify(this.deudas));
+
     this.setOpen(false)
     this.nuevoDato = {}
   }
-
-  eliminar() {
-    console.log("boton precionado")
+  eliminarDeuda(index: number) {
+    this.deudas.splice(index, 1); // Elimina el elemento en la posición 'index' del array
+    localStorage.setItem(DEUDAS_KEY, JSON.stringify(this.deudas));
   }
+
+  // @ts-ignore
+  async presentActionSheet(i) {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Accion',
+      buttons: [
+        {
+          text: 'Eliminar',
+          role: 'destructive',
+          handler: () => {
+            this.eliminarDeuda(i)
+          },
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          data: {
+            action: 'cancel',
+          },
+        },
+      ],
+    });
+
+    await actionSheet.present();
+  }
+
+
 }
