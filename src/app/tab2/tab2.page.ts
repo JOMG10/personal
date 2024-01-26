@@ -10,10 +10,7 @@ const DEUDAS_KEY = 'deudas';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-
-
-
-  constructor(private modalCtrl: ModalController, private actionSheetCtrl: ActionSheetController) {
+    constructor(private modalCtrl: ModalController, private actionSheetCtrl: ActionSheetController) {
     // Cargar deudas desde localStorage al iniciar la aplicación
     const storedDeudas = localStorage.getItem(DEUDAS_KEY);
     this.deudas = storedDeudas ? JSON.parse(storedDeudas) : [];
@@ -34,21 +31,31 @@ export class Tab2Page {
   confirm() {
     return this.modalCtrl.dismiss(this.name, 'confirm');
   }
+
   agregarPago() {
-    this.deudas.push( {
-      alias:this.nuevoDato.alias,
-      nombre:this.nuevoDato.nombre,
-      cantidad:this.nuevoDato.cantidad,
-      fechaMensual:this.nuevoDato.fechaMensual,
-      fechaInicio: this.nuevoDato.fechaInicio
-    })
 
-    localStorage.setItem(DEUDAS_KEY, JSON.stringify(this.deudas));
+    if (this.nuevoDato.alias.trim() === "" || this.nuevoDato.nombre.trim() === "") {
+      console.log("El campo es vacío");
+    } else {
 
-    this.setOpen(false)
-    this.nuevoDato = {}
+      this.deudas.push({
+        alias: this.nuevoDato.alias,
+        nombre: this.nuevoDato.nombre,
+        cantidad: this.nuevoDato.cantidad,
+        fechaMensual: this.nuevoDato.fechaMensual,
+        fechaInicio: this.nuevoDato.fechaInicio
+      });
+
+      localStorage.setItem(DEUDAS_KEY, JSON.stringify(this.deudas));
+      this.setOpen(false);
+      this.nuevoDato = {};
+    }
   }
+
+
+
   eliminarDeuda(index: number) {
+
     this.deudas.splice(index, 1); // Elimina el elemento en la posición 'index' del array
     localStorage.setItem(DEUDAS_KEY, JSON.stringify(this.deudas));
   }
@@ -78,5 +85,33 @@ export class Tab2Page {
     await actionSheet.present();
   }
 
+  nuevoNombre=""
+  nuevoAlias=""
+  nuevaCantidad=""
+  nuevaFechaMensual = ""
+  nuevaFechaInicio = ""
+  nuevoDatos: any;
 
+
+  editar(i: number) {
+    const item = this.deudas[i];
+    if (item) {
+      this.nuevoAlias = item.alias;
+      this.nuevoNombre = item.nombre;
+      this.nuevaCantidad = item.cantidad;
+      this.nuevaFechaMensual = item.fechaMensual;
+      this.nuevaFechaInicio = item.fechaInicio;
+    }
+  }
+  actualizarDatos(alias: string) {
+
+    this.deudas.forEach((nom, index)=>{
+      if(alias === nom.alias) {
+        console.log(this.nuevoAlias,this.nuevoNombre)
+                this.nuevoDato.nombre = this.nuevoNombre
+
+      }
+
+    })
+  }
 }
