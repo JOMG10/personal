@@ -90,8 +90,6 @@ export class Tab2Page {
   nuevaCantidad=""
   nuevaFechaMensual = ""
   nuevaFechaInicio = ""
-  nuevoDatos: any;
-
 
   editar(i: number) {
     const item = this.deudas[i];
