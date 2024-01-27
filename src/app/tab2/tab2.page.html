@@ -2,6 +2,7 @@
 <ion-content [fullscreen]="true"  >
 
   <ion-button (click)="setOpen(true)">AGREGAR</ion-button>
+  <ion-button >SALDO</ion-button>
 
     <ion-item *ngFor="let deuda of deudas; let i = index "  >
       <ion-label (click)="setOpenItem(true); editar(i)">
