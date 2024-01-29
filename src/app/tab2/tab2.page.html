@@ -2,7 +2,14 @@
 <ion-content [fullscreen]="true"  >
 
   <ion-button (click)="setOpen(true)">AGREGAR</ion-button>
-  <ion-button >SALDO</ion-button>
+  <ion-button id="present-alert2">SALDO</ion-button>
+
+  <ion-alert
+    trigger="present-alert2"
+    header="Please enter your info"
+    [buttons]="alertButtons"
+    [inputs]="alertInputs"
+  ></ion-alert>
 
     <ion-item *ngFor="let deuda of deudas; let i = index "  >
       <ion-label (click)="setOpenItem(true); editar(i)">
@@ -68,7 +75,7 @@
             <ion-buttons slot="start">
               <ion-button (click)="setOpenItem(false)">Cancel</ion-button>
             </ion-buttons>
-            <ion-title>INFORMCION DE </ion-title>
+            <ion-title>DATOS DE LA DEUDA</ion-title>
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
