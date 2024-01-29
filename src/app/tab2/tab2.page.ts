@@ -20,6 +20,7 @@ export class Tab2Page {
   isModalOpen = false;
   isModalItem =false;
   name= true
+  private buttons: any;
 
 
   setOpen(isOpen: boolean) {
@@ -116,24 +117,16 @@ export class Tab2Page {
   public alertButtons = ['OK'];
   public alertInputs = [
     {
-      placeholder: 'Name',
+
+      placeholder: 'usuario',
+
     },
     {
-      placeholder: 'Nickname (max 8 characters)',
+      placeholder: 'contraseña',
       attributes: {
         maxlength: 8,
       },
-    },
-    {
-      type: 'number',
-      placeholder: 'Age',
-      min: 1,
-      max: 100,
-    },
-    {
-      type: 'textarea',
-      placeholder: 'A little about yourself',
-    },
+    }
   ];
 
 }
