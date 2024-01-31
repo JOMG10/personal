@@ -23,8 +23,13 @@
         <ion-icon slot="start" name="home-outline"></ion-icon>
       </ion-item>
 
-      <ion-item (click)="this.opcion = this.Inicio"  >
-        <ion-label >INICIO</ion-label>
+      <ion-item (click)="this.opcion = this.OPCION4"  >
+        <ion-label >MOTO</ion-label>
+        <ion-icon slot="start" name="home-outline"></ion-icon>
+      </ion-item>
+
+      <ion-item (click)="this.opcion = this.OPCION5"  >
+        <ion-label >ESCUELA</ion-label>
         <ion-icon slot="start" name="home-outline"></ion-icon>
       </ion-item>
 
@@ -49,5 +54,7 @@
     <app-tab1 *ngIf="this.opcion ===this.OPCION2"></app-tab1>
     <app-tab2 *ngIf="this.opcion ===this.Inicio"></app-tab2>
     <app-tab3 *ngIf="this.opcion ===this.OPCION3"></app-tab3>
+    <app-tab4 *ngIf="this.opcion ===this.OPCION4"></app-tab4>
+    <app-tab5 *ngIf="this.opcion === this.OPCION5"></app-tab5>
   </ion-content>
 </div>

@@ -13,6 +13,8 @@ export class TabsPage {
   Inicio = "INICIO"
   OPCION2= "opcion2"
   OPCION3= "opcion3"
+  OPCION4 = "OPCION4"
+  OPCION5 = "OPCION5"
 
   opcion = this.Inicio
 
