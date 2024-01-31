@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ActionSheetController, ModalController} from '@ionic/angular';
 
 const DEUDAS_KEY = 'deudas';
+const TOTAL_KEY = 'totalDeudas'
 
 
 @Component({
@@ -14,14 +15,25 @@ export class Tab2Page {
     // Cargar deudas desde localStorage al iniciar la aplicación
     const storedDeudas = localStorage.getItem(DEUDAS_KEY);
     this.deudas = storedDeudas ? JSON.parse(storedDeudas) : [];
+
+    //cargar el total
+      const storedTotal = localStorage.getItem(TOTAL_KEY)
+      this.sumaTotal = storedTotal ? JSON.parse(storedTotal) : []
+
   }
+
   deudas:any[] = []
   nuevoDato: any ={}
   isModalOpen = false;
   isModalItem =false;
   name= true
-  private buttons: any;
 
+  nuevoNombre=""
+  nuevoAlias=""
+  nuevaCantidad: number = 0
+  nuevaFechaMensual = ""
+  nuevaFechaInicio = ""
+  sumaTotal: number = 0
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
@@ -39,6 +51,10 @@ export class Tab2Page {
       console.log("El campo es vacío");
     } else {
 
+      const cantidadNumerica = parseFloat(this.nuevoDato.cantidad);
+
+      this.sumaTotal += cantidadNumerica
+
       this.deudas.push({
         alias: this.nuevoDato.alias,
         nombre: this.nuevoDato.nombre,
@@ -46,16 +62,27 @@ export class Tab2Page {
         fechaMensual: this.nuevoDato.fechaMensual,
         fechaInicio: this.nuevoDato.fechaInicio
       });
+      localStorage.setItem(TOTAL_KEY, JSON.stringify(this.sumaTotal));
 
       localStorage.setItem(DEUDAS_KEY, JSON.stringify(this.deudas));
       this.setOpen(false);
       this.nuevoDato = {};
+
     }
   }
 
 
 
   eliminarDeuda(index: number) {
+
+    this.deudas.forEach((deuda, i)=>{
+      if(index === i){
+
+        // @ts-ignore
+        this.sumaTotal -= deuda.cantidad
+
+      }
+    })
 
     this.deudas.splice(index, 1); // Elimina el elemento en la posición 'index' del array
     localStorage.setItem(DEUDAS_KEY, JSON.stringify(this.deudas));
@@ -86,11 +113,7 @@ export class Tab2Page {
     await actionSheet.present();
   }
 
-  nuevoNombre=""
-  nuevoAlias=""
-  nuevaCantidad=""
-  nuevaFechaMensual = ""
-  nuevaFechaInicio = ""
+
 
   editar(i: number) {
     const item = this.deudas[i];

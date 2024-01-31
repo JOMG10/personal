@@ -2,7 +2,7 @@
 <ion-content [fullscreen]="true"  >
 
   <ion-button (click)="setOpen(true)">AGREGAR</ion-button>
-  <ion-button id="open-custom-dialog">SALDO</ion-button>
+  <ion-button id="open-custom-dialog" >SALDO</ion-button>
 
   <ion-item button="true" detail="false" (click)="modal.dismiss()" *ngFor="let deuda of deudas; let i = index ">
     <ion-icon name="person-circle"></ion-icon>
@@ -111,21 +111,20 @@
         <div class="wrapper">
           <h1>Dialog header</h1>
 
-          <ion-list lines="none">
+          <ion-list lines="none" *ngFor="let deuda of deudas">
             <ion-item button="true" detail="false" (click)="modal.dismiss()">
               <ion-icon name="person-circle"></ion-icon>
-              <ion-label>Item 1</ion-label>
+              <ion-label>{{deuda.nombre}} Cantidad:{{deuda.cantidad}}</ion-label>
+
             </ion-item>
-            <ion-item button="true" detail="false" (click)="modal.dismiss()">
-              <ion-icon name="person-circle"></ion-icon>
-              <ion-label>Item 2</ion-label>
-            </ion-item>
-            <ion-item button="true" detail="false" (click)="modal.dismiss()">
-              <ion-icon name="person-circle"></ion-icon>
-              <ion-label>Item 3</ion-label>
-            </ion-item>
+
+
+
           </ion-list>
         </div>
+
+        <ion-button >calcular</ion-button>
+        <ion-label>TOTAL: {{this.sumaTotal}}</ion-label>
       </ng-template>
     </ion-modal>
   </ion-content>
