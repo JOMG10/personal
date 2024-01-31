@@ -2,26 +2,18 @@
 <ion-content [fullscreen]="true"  >
 
   <ion-button (click)="setOpen(true)">AGREGAR</ion-button>
-  <ion-button id="present-alert2">SALDO</ion-button>
+  <ion-button id="open-custom-dialog">SALDO</ion-button>
 
-  <ion-alert
-    trigger="present-alert2"
-    header="Please enter your info"
-    [buttons]="alertButtons"
-    [inputs]="alertInputs"
-  ></ion-alert>
+  <ion-item button="true" detail="false" (click)="modal.dismiss()" *ngFor="let deuda of deudas; let i = index ">
+    <ion-icon name="person-circle"></ion-icon>
+    <ion-label (click)="setOpenItem(true); editar(i)">{{deuda.alias}}{{ deuda.fechaMensual}}</ion-label>
 
-    <ion-item *ngFor="let deuda of deudas; let i = index "  >
-      <ion-label (click)="setOpenItem(true); editar(i)">
-        <h2>{{deuda.alias}}{{ deuda.fechaMensual}}</h2>
-      </ion-label>
-
-      <ion-buttons slot="end" id="present-alert">
-        <ion-icon name="trash-outline" (click)="presentActionSheet(i)" style="height: 20px; width: 20px" ></ion-icon>
-        <ion-badge color="miColor" class="numero-carrito"></ion-badge>
-        <ion-icon name="search-outline" slot="end" id="buscador" routerLink="/buscar" ></ion-icon>
-      </ion-buttons>
-    </ion-item>
+    <ion-buttons slot="end" id="present-alert">
+      <ion-icon name="trash-outline" (click)="presentActionSheet(i)" style="height: 20px; width: 20px" ></ion-icon>
+      <ion-badge color="miColor" class="numero-carrito"></ion-badge>
+      <ion-icon name="search-outline" slot="end" id="buscador" routerLink="/buscar" ></ion-icon>
+    </ion-buttons>
+  </ion-item>
 
   <!-- modal de AGREGAR UN NUEVO PAGO -->
   <ion-content class="ion-padding">
@@ -105,6 +97,35 @@
 
           <ion-button (click)="actualizarDatos(nuevoAlias); setOpenItem(false)">GUARDAR CAMBIOS</ion-button>
         </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
+
+  <!--MODAL PARA VALIDAR LOS DATOS DEL USUARIO PARA ACCEDER A TODOS LOS DATOS:-->
+
+  <ion-content class="ion-padding">
+
+
+    <ion-modal id="example-modal" #modal trigger="open-custom-dialog">
+      <ng-template>
+        <div class="wrapper">
+          <h1>Dialog header</h1>
+
+          <ion-list lines="none">
+            <ion-item button="true" detail="false" (click)="modal.dismiss()">
+              <ion-icon name="person-circle"></ion-icon>
+              <ion-label>Item 1</ion-label>
+            </ion-item>
+            <ion-item button="true" detail="false" (click)="modal.dismiss()">
+              <ion-icon name="person-circle"></ion-icon>
+              <ion-label>Item 2</ion-label>
+            </ion-item>
+            <ion-item button="true" detail="false" (click)="modal.dismiss()">
+              <ion-icon name="person-circle"></ion-icon>
+              <ion-label>Item 3</ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
       </ng-template>
     </ion-modal>
   </ion-content>
