@@ -26,6 +26,7 @@ export class Tab2Page {
   nuevoDato: any ={}
   isModalOpen = false;
   isModalItem =false;
+
   name= true
 
   nuevoNombre=""
@@ -74,16 +75,6 @@ export class Tab2Page {
 
 
   eliminarDeuda(index: number) {
-
-    this.deudas.forEach((deuda, i)=>{
-      if(index === i){
-
-        // @ts-ignore
-        this.sumaTotal -= deuda.cantidad
-
-      }
-    })
-
     this.deudas.splice(index, 1); // Elimina el elemento en la posición 'index' del array
     localStorage.setItem(DEUDAS_KEY, JSON.stringify(this.deudas));
   }
