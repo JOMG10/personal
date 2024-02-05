@@ -11,26 +11,26 @@ const TOTAL_KEY = 'totalDeudas'
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-    constructor(private modalCtrl: ModalController, private actionSheetCtrl: ActionSheetController) {
+  constructor(private modalCtrl: ModalController, private actionSheetCtrl: ActionSheetController) {
     // Cargar deudas desde localStorage al iniciar la aplicación
     const storedDeudas = localStorage.getItem(DEUDAS_KEY);
     this.deudas = storedDeudas ? JSON.parse(storedDeudas) : [];
 
     //cargar el total
-      const storedTotal = localStorage.getItem(TOTAL_KEY)
-      this.sumaTotal = storedTotal ? JSON.parse(storedTotal) : []
+    const storedTotal = localStorage.getItem(TOTAL_KEY)
+    this.sumaTotal = storedTotal ? JSON.parse(storedTotal) : []
 
   }
 
-  deudas:any[] = []
-  nuevoDato: any ={}
+  deudas: any[] = []
+  nuevoDato: any = {}
   isModalOpen = false;
-  isModalItem =false;
+  isModalItem = false;
 
-  name= true
+  name = true
 
-  nuevoNombre=""
-  nuevoAlias=""
+  nuevoNombre = ""
+  nuevoAlias = ""
   nuevaCantidad: number = 0
   nuevaFechaMensual = ""
   nuevaFechaInicio = ""
@@ -39,9 +39,11 @@ export class Tab2Page {
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
-  setOpenItem(openItem : boolean){
+
+  setOpenItem(openItem: boolean) {
     this.isModalItem = openItem;
   }
+
   confirm() {
     return this.modalCtrl.dismiss(this.name, 'confirm');
   }
@@ -71,7 +73,6 @@ export class Tab2Page {
 
     }
   }
-
 
 
   eliminarDeuda(index: number) {
@@ -105,7 +106,6 @@ export class Tab2Page {
   }
 
 
-
   editar(i: number) {
     const item = this.deudas[i];
     if (item) {
@@ -116,31 +116,17 @@ export class Tab2Page {
       this.nuevaFechaInicio = item.fechaInicio;
     }
   }
+
   actualizarDatos(alias: string) {
 
-    this.deudas.forEach((nom, index)=>{
-      if(alias === nom.alias) {
-        console.log(this.nuevoAlias,this.nuevoNombre)
-                this.nuevoDato.nombre = this.nuevoNombre
+    this.deudas.forEach((nom, index) => {
+      if (alias === nom.alias) {
+        console.log(this.nuevoAlias, this.nuevoNombre)
+        this.nuevoDato.nombre = this.nuevoNombre
 
       }
 
     })
   }
-
-  public alertButtons = ['OK'];
-  public alertInputs = [
-    {
-
-      placeholder: 'usuario',
-
-    },
-    {
-      placeholder: 'contraseña',
-      attributes: {
-        maxlength: 8,
-      },
-    }
-  ];
 
 }

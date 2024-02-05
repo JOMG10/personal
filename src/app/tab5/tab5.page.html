@@ -1,13 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tab5</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tab5</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+<ion-content>
+  <!-- Encabezado de la tabla -->
+  <ion-grid>
+    <ion-row>
+      <ion-col>Lu</ion-col>
+      <ion-col>Ma</ion-col>
+      <ion-col>Mi</ion-col>
+      <ion-col>Ju</ion-col>
+      <ion-col>Vi</ion-col>
+      <ion-col>Sa</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Datos de la tabla -->
+  <ion-grid>
+    <ion-row *ngFor="let item of item">
+      <ion-col>{{ item.nombre }}</ion-col>
+      <ion-col>{{ item.apellido }}</ion-col>
+      <ion-col>{{ item.apellido }}</ion-col>
+      <ion-col>{{ item.nombre }}</ion-col>
+      <ion-col>{{ item.apellido }}</ion-col>
+      <ion-col>{{ item.apellido }}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
