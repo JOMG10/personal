@@ -9,5 +9,30 @@ export class Tab5Page  {
 
   constructor() { }
 
+item =[
+  {
+    nombre:"jose",
+    apellido:"Martinez"},
+  {
+    nombre: "juan",
+    apellido: "Hernandez"
+  },
+  {
+    nombre:"jose",
+    apellido:"Martinez"},
+  {
+    nombre: "juan",
+    apellido: "Hernandez"
+  },
+  {
+    nombre:"jose",
+    apellido:"Martinez"},
+  {
+    nombre: "juan",
+    apellido: "Hernandez"
+  }
+
+]
+
 
 }
