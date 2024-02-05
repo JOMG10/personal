@@ -1,4 +1,5 @@
 
+<ion-button color="secondary"  id="open-modal">AGREGAR</ion-button>
 
 <ion-content>
   <!-- Encabezado de la tabla -->
@@ -15,13 +16,63 @@
 
   <!-- Datos de la tabla -->
   <ion-grid>
-    <ion-row *ngFor="let item of item">
+    <ion-row *ngFor="let item of items">
       <ion-col>{{ item.nombre }}</ion-col>
-      <ion-col>{{ item.apellido }}</ion-col>
-      <ion-col>{{ item.apellido }}</ion-col>
-      <ion-col>{{ item.nombre }}</ion-col>
-      <ion-col>{{ item.apellido }}</ion-col>
-      <ion-col>{{ item.apellido }}</ion-col>
+      <ion-col>{{ item.horaInicio }}</ion-col>
+      <ion-col>{{ item.horaTermino }}</ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-header>
+    <ion-toolbar>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-modal trigger="open-modal">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()">Cancel</ion-button>
+            </ion-buttons>
+            <ion-title>Welcome</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="confirm()" (click)="agregarMateria()" [strong]="true">Confirm</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-item>
+            <ion-input
+              label=" Nombre de la materia"
+              labelPlacement="stacked"
+              type="text"
+              placeholder="nombre de la materia"
+              [(ngModel)]="name"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Hora de inicio"
+              labelPlacement="stacked"
+              type="text"
+              placeholder="hora de inicio"
+              [(ngModel)]="name"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              label="Hora de termino"
+              labelPlacement="stacked"
+              type="text"
+              placeholder="hora de termino"
+              [(ngModel)]="name"
+            ></ion-input>
+          </ion-item>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
 </ion-content>
