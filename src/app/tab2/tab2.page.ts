@@ -12,7 +12,6 @@ const TOTAL_KEY = 'totalDeudas'
 })
 export class Tab2Page {
   constructor(private modalCtrl: ModalController, private actionSheetCtrl: ActionSheetController) {
-    // Cargar deudas desde localStorage al iniciar la aplicación
     const storedDeudas = localStorage.getItem(DEUDAS_KEY);
     this.deudas = storedDeudas ? JSON.parse(storedDeudas) : [];
 

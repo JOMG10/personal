@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonModal} from "@ionic/angular";
 
-
+const HORARIO_KEY = "horario"
 
 
 @Component({
