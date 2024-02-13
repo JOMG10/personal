@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonModal} from "@ionic/angular";
+import {ActionSheetController, IonModal} from "@ionic/angular";
 
 const HORARIO_KEY = "horario"
 
@@ -13,9 +13,11 @@ export class Tab5Page  {
   @ViewChild(IonModal) modal: IonModal | undefined;
 
 
-  constructor() {
-
+  constructor(private actionSheetCtrl: ActionSheetController) {
+    const storageHorario = localStorage.getItem(HORARIO_KEY)
+    this.items = storageHorario ? JSON.parse(storageHorario): []
   }
+
   items: any[] = []
   name:String = ""
 
@@ -27,24 +29,46 @@ export class Tab5Page  {
   sumaTotal: number = 0
 
   // @ts-ignore
-  nuevoDato = { }
+  nuevoDato:any = {
+
+  }
 
   agregarMateria(){
- /*
+
     this.items.push({
-      alias: this.nuevoDato.alias,
       nombre: this.nuevoDato.nombre,
-      cantidad: this.nuevoDato.cantidad,
-      fechaMensual: this.nuevoDato.fechaMensual,
-      fechaInicio: this.nuevoDato.fechaInicio
+      lunes:this.nuevoDato.lunes,
+      martes:this.nuevoDato.martes,
+      miercoles:this.nuevoDato.miercoles,
+      horaInicio: this.nuevoDato.horaInicio,
+      horaTermino: this.nuevoDato.horaTermino,
+
     });
-    localStorage.setItem(TOTAL_KEY, JSON.stringify(this.sumaTotal));
-
-    localStorage.setItem(DEUDAS_KEY, JSON.stringify(this.deudas));
-    this.setOpen(false);
+    localStorage.setItem(HORARIO_KEY, JSON.stringify(this.items));
     this.nuevoDato = {};
+  }
 
-  */
+  opcion=""
+
+  lunes = "lunes"
+  martes="martes"
+  miercoles="miercoles"
+  jueves="jueves"
+  viernes="viernes"
+  sabado="sabado"
+  domingo="domingo"
+
+
+  handleChange(e: { detail: { value: string; }; }) {
+    console.log('ionChange fired with value: ' + e.detail.value);
+  }
+
+  handleCancel() {
+    console.log('ionCancel fired');
+  }
+
+  handleDismiss() {
+    console.log('ionDismiss fired');
   }
 
 
@@ -57,6 +81,37 @@ export class Tab5Page  {
   confirm() {
     // @ts-ignore
     this.modal.dismiss(this.name, 'confirm');
+  }
+
+
+  eliminarDeuda(index: number) {
+    this.items.splice(index, 1); // Elimina el elemento en la posición 'index' del array
+    localStorage.setItem(HORARIO_KEY, JSON.stringify(this.items));
+  }
+
+  // @ts-ignore
+  async presentActionSheet(i) {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Accion',
+      buttons: [
+        {
+          text: 'Eliminar',
+          role: 'destructive',
+          handler: () => {
+            this.eliminarDeuda(i)
+          },
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          data: {
+            action: 'cancel',
+          },
+        },
+      ],
+    });
+
+    await actionSheet.present();
   }
 
 
