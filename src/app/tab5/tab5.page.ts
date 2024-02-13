@@ -60,6 +60,7 @@ export class Tab5Page  {
 
 
   handleChange(e: { detail: { value: string; }; }) {
+
     console.log('ionChange fired with value: ' + e.detail.value);
   }
 
